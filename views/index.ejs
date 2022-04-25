@@ -1,0 +1,14 @@
+<%- include('head'); -%>
+<body>
+    <form method="post" action="/">
+        <label>username</label>
+        <input required type="text" placeholder="username" name="username">
+        <label>password</label>
+        <input required type="password" placeholder="password" name="password">
+        <button class="btn" type="submit">Submit</button>
+        <p class="response"></p>
+        <p>Don't have a user?</p>
+        <a href="/register" class="btn btn-primary">register</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%- include('head'); -%>
+<body>
+    <form method="post" action="/register">
+        <label>username</label>
+        <input required type="text" placeholder="username" name="username">
+        <label>password</label>
+        <input required type="password" placeholder="password" name="password">
+        <label>repeat password</label>
+        <input required type="password" name="repeatPassword">
+        <button type="submit">Submit</button>
+        <p class="response"></p>
+        <a class="btn btn-primary" href="/">login</a>
+    </form>
+</body>
+</html>
