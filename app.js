@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require("express");
+const encrypt = require("mongoose-encryption");
 const app = express();
 app.set("view engine", "ejs");
 const mongoose = require("mongoose");
@@ -6,10 +8,12 @@ mongoose
   .connect("mongodb://localhost:27017/test")
   .then(() => console.log("DB is connected"));
 app.use(express.urlencoded({ extended: false }));
-const users = mongoose.model("user", {
+const usersSchema = new mongoose.Schema({
   username: String,
   password: String,
 });
+usersSchema.plugin(encrypt, { secret: process.env.SECRET, encryptedFields: ['password']});
+const users = mongoose.model("users", usersSchema)
 
 app.get("/", (req, res) => {
   res.render("index.ejs");
@@ -20,11 +24,11 @@ app.get("/register", (req, res) => {
 app.post("/login", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  users.findOne({username : username}, (err, loggedUser)=>{
-    if(err){
+  users.findOne({ username: username }, (err, loggedUser) => {
+    if (err) {
       console.log(err);
-    } else{
-      if(loggedUser){
+    } else {
+      if (loggedUser) {
         if (loggedUser.password === password) {
           console.log("login success");
         } else {
@@ -34,7 +38,7 @@ app.post("/login", (req, res) => {
         console.log("user not found");
       }
     }
-  })
+  });
 });
 app.post("/register", (req, res) => {
   let username = req.body.username;
@@ -42,8 +46,8 @@ app.post("/register", (req, res) => {
   let repeatedPassword = req.body.repeatPassword;
   if (password === repeatedPassword) {
     const user = new users({ username: username, password: password });
-    user.save((err)=>{
-      if(err){
+    user.save((err) => {
+      if (err) {
         console.log(err);
       } else {
         console.log("user saved");

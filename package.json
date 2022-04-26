@@ -17,8 +17,11 @@
   },
   "homepage": "https://github.com/andrevdal/skole_tverfaglig#readme",
   "dependencies": {
+    "dotenv": "^16.0.0",
     "ejs": "^3.1.7",
+    "env": "^0.0.2",
     "express": "^4.17.3",
-    "mongoose": "^6.3.1"
+    "mongoose": "^6.3.1",
+    "mongoose-encryption": "^2.1.2"
   }
 }
