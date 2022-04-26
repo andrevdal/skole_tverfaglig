@@ -1,5 +1,8 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
+const bcrypt = require("bcrypt");
+const saltRounds = 13;
 app.set("view engine", "ejs");
 const mongoose = require("mongoose");
 mongoose
@@ -20,37 +23,49 @@ app.get("/register", (req, res) => {
 app.post("/login", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  users.findOne({username : username}, (err, loggedUser)=>{
-    if(err){
-      console.log(err);
-    } else{
-      if(loggedUser){
-        if (loggedUser.password === password) {
-          console.log("login success");
+  bcrypt.hash(password, saltRounds, (err, password) => {
+    if (err) {
+      users.findOne({ username: username }, (err, loggedUser) => {
+        if (err) {
+          console.log("30" + err);
         } else {
-          console.log("incorrect password");
+          if (loggedUser) {
+            if (loggedUser.password === password) {
+              console.log("login success");
+            } else {
+              console.log("incorrect password");
+            }
+          } else {
+            console.log("user not found");
+          }
         }
-      } else {
-        console.log("user not found");
-      }
+      });
+    } else{
+      console.log("44" + err);
     }
-  })
+  });
 });
 app.post("/register", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   let repeatedPassword = req.body.repeatPassword;
   if (password === repeatedPassword) {
-    const user = new users({ username: username, password: password });
-    user.save((err)=>{
-      if(err){
+    bcrypt.hash(password, saltRounds, (err, password) => {
+      if (err) {
         console.log(err);
       } else {
-        console.log("user saved");
+        const user = new users({ username: username, password: password });
+        user.save((err) => {
+          if (err) {
+            console.log(err);
+          } else {
+            console.log("user saved");
+          }
+        });
       }
     });
   } else {
-    console.log("password dont match");
+    console.log("paswords don't match");
   }
 });
 app.listen(4000, () => {
