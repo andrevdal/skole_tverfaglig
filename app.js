@@ -17,9 +17,24 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
-app.post("/", (req, res) => {
+app.post("/login", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
+  users.findOne({username : username}, (err, loggedUser)=>{
+    if(err){
+      console.log(err);
+    } else{
+      if(loggedUser){
+        if (loggedUser.password === password) {
+          console.log("login success");
+        } else {
+          console.log("incorrect password");
+        }
+      } else {
+        console.log("user not found");
+      }
+    }
+  })
 });
 app.post("/register", (req, res) => {
   let username = req.body.username;
@@ -27,8 +42,15 @@ app.post("/register", (req, res) => {
   let repeatedPassword = req.body.repeatPassword;
   if (password === repeatedPassword) {
     const user = new users({ username: username, password: password });
-    user.save().then(() => console.log("yes"));
+    user.save((err)=>{
+      if(err){
+        console.log(err);
+      } else {
+        console.log("user saved");
+      }
+    });
   } else {
+    console.log("password dont match");
   }
 });
 app.listen(4000, () => {
