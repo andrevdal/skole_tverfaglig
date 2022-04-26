@@ -23,28 +23,24 @@ app.get("/register", (req, res) => {
 app.post("/login", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  bcrypt.hash(password, saltRounds, (err, password) => {
+  users.findOne({ username: username }, (err, loggedUser) => {
     if (err) {
-      users.findOne({ username: username }, (err, loggedUser) => {
-        if (err) {
-          console.log("30" + err);
-        } else {
-          if (loggedUser) {
-            if (loggedUser.password === password) {
-              console.log("login success");
-            } else {
-              console.log("incorrect password");
-            }
-          } else {
+        console.log(err);
+        return;}
+        if (!loggedUser) {
             console.log("user not found");
-          }
-        }
+            return;
+          } 
+          bcrypt.compare(password, loggedUser.password).then((correct)=>{
+              if(correct){
+                console.log("login success");
+              } else{
+                console.log("incorrect password");
+              }
+            });
+          console.log(err);
       });
-    } else{
-      console.log("44" + err);
-    }
-  });
-});
+    });
 app.post("/register", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
