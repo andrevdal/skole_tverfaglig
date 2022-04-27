@@ -20,27 +20,10 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
-app.post("/login", (req, res) => {
+app.post("/", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
-  users.findOne({ username: username }, (err, loggedUser) => {
-    if (err) {
-        console.log(err);
-        return;}
-        if (!loggedUser) {
-            console.log("user not found");
-            return;
-          } 
-          bcrypt.compare(password, loggedUser.password).then((correct)=>{
-              if(correct){
-                console.log("login success");
-              } else{
-                console.log("incorrect password");
-              }
-            });
-          console.log(err);
-      });
-    });
+});
 app.post("/register", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
