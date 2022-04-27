@@ -1,4 +1,4 @@
-const User = require("../models/user.js")
+const User = require("../models/user.js");
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
 
@@ -16,4 +16,4 @@ function authenticate(req, res) {
   });
 }
 
-module.exports = {passport, authenticate}
+module.exports = { passport, authenticate };

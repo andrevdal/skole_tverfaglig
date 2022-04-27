@@ -9,7 +9,7 @@ const loginRouter = require("./routes/login.js");
 const registerRouter = require("./routes/register");
 const logoutRouter = require("./routes/logout");
 const User = require("./models/user.js");
-const {passport} = require("./middleware/passport.js");
+const { passport } = require("./middleware/passport.js");
 app.set("view engine", "ejs");
 
 // Cookies middleware
