@@ -1,0 +1,34 @@
+html {
+  margin: none;
+}
+body {
+  text-align: center;
+}
+h1 {
+  padding: 5%;
+}
+h2 {
+  background-color: black;
+  color: white;
+  width: 30%;
+  margin: auto;
+  margin-bottom: 3%;
+}
+img {
+  width: 10%;
+  margin-bottom: 3%;
+  margin-top: 1%;
+}
+.content {
+  background-color: lightcyan;
+  width: 50%;
+  margin: auto;
+  margin-top: 3%;
+  padding: 1%;
+}
+.logOutButton {
+  position: sticky;
+  top: 0;
+  float: right;
+  padding: 1%;
+}

@@ -1,3 +1,7 @@
+<%- include('head'); -%>
+<link rel="stylesheet" href="/styles/info.css">
+<title>Info</title>
+</head>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +10,22 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>wooohoooo</h1>
-    <a href="/logout"><button>Logout</button></a>
-  </body>
+    <a class="logOutButton" href="/logout"><button class="btn-lg btn-primary">Logout</button></a>
+    <h1>Dokumentasjon</h1>
+    <div class="content">
+        <h2>Sikkerhet</h2>
+        <img src="/img/lock.png" alt="Simple drawing of padlock">
+        <p>I steden for å lagre passord som en ren string i databasen, krypterer jeg de med to lag med sikkerhet. Først bruker jeg noe som heter hashing for å kryptere de om til en lang string med uleselige tegn. Måten hashen funker på er at å kryptere et passord kan skje umiddelbart, men derimot å dekryptere passordet vil ta timesvis, men dette kommer også ann på passordet som brukeren har laget. Derfor kan man umiddelbart hashe et passord når man logger inn og sjekke det opp mot det lagrede passordene. Dette eliminerer trusselen for at noen som har tilgang til databasen eller noen som har brutt seg inn får tilgang til alle passordene. 
+        </p>
+        <img src="/img/hash.png" alt="simple drawing of hashtag symbol">
+        <p>
+            Dette er likevel ikke sikkert nok for meg. Siden alle like passord blir til like hasher, kan man se etter de og sammenligne de opp mot hashede passord. Derfor har jeg brukt noe som heter salting. Når man salter et passord, blir det generert mange tilfeldige tegn bak passordet. Dette gjør at det kan være to helt like passord med to helt ulike hasher. Salten lagres også i databasen så man kan dekryptere passordet fort når man skal logge inn.  
+        </p>
+        <img src="/img/salt.png" alt="Simple drawing of saltshaker,pouring salt">
+    </div>
+    <div class="content">
+        <h2>Backend</h2>
+        <img src="/img/server.png" alt="">
+    </div>
+</body>
 </html>

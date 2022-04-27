@@ -1,14 +1,18 @@
 <%- include('head'); -%>
+    <link rel="stylesheet" href="/styles/index.css">
+    <title>Home</title>
+</head>
 <body>
-    <form method="post" action="/login">
-        <label>username</label>
-        <input required type="text" placeholder="username" name="username">
-        <label>password</label>
-        <input required type="password" placeholder="password" name="password">
-        <button class="btn" type="submit">Submit</button>
-        <p class="response"></p>
-        <p>Don't have a user?</p>
-        <a href="/register" class="btn btn-primary">register</a>
-    </form>
-</body>
+    <body class="text-center">
+        <form method="POST" action="/login" class="form-signin">
+          <h1 class="h3 mb-3 font-weight-normal">Log in</h1>
+          <label for="inputEmail" class="sr-only">Username</label>
+          <input name="username" type="text" class="form-control" placeholder="Username" required autofocus>
+          <label for="inputPassword" class="sr-only">Password</label>
+          <input name="password"type="password" class="form-control" placeholder="Password" required>
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
+          <p>Don't have a user? sign in <a href="/register">here</a></p>
+          <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
+        </form>
+    </body>
 </html>

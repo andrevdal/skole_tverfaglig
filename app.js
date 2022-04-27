@@ -12,6 +12,9 @@ const User = require("./models/user.js");
 const { passport } = require("./middleware/passport.js");
 app.set("view engine", "ejs");
 
+// Allows use of css
+app.use(express.static("public"))
+
 // Cookies middleware
 app.use(
   session({

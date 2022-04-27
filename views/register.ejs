@@ -1,15 +1,19 @@
 <%- include('head'); -%>
-<body>
-    <form method="post" action="/register">
-        <label>username</label>
-        <input required type="text" placeholder="username" name="username">
-        <label>password</label>
-        <input required type="password" placeholder="password" name="password">
-        <label>repeat password</label>
-        <input required type="password" name="repeatPassword">
-        <button type="submit">Submit</button>
-        <p class="response"></p>
-        <a class="btn btn-primary" href="/login">login</a>
+    <link rel="stylesheet" href="/styles/index.css">
+    <title>Register</title>
+</head>
+<body class="text-center">
+    <form method="POST" action="/register" class="form-signin">
+        <h1 class="h3 mb-3 font-weight-normal">Register user</h1>
+        <label for="inputEmail" class="sr-only">Username</label>
+        <input name="username" type="text" id="inputEmail" class="form-control" placeholder="Username" required autofocus>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input name="password"type="password" class="form-control" placeholder="Password" required>
+        <label for="inputPassword" class="sr-only">Repeat password</label>
+        <input name="repeatPassword"type="password" class="form-control" placeholder="Password" required>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Register user</button>
+        <p>Already have a user? Log in <a href="/">here</a></p>
+        <p class="mt-5 mb-3 text-muted">&copy; 2022-2023</p>
     </form>
 </body>
 </html>
