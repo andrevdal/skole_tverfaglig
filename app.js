@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
 app.get("/register", (req, res) => {
   res.render("register.ejs");
 });
-app.post("/", (req, res) => {
+app.post("/login", (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
 });
